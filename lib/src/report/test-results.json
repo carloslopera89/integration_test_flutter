@@ -1,0 +1,24 @@
+{"protocolVersion":"0.1.1","runnerVersion":null,"pid":5594,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/Users/carloslopera/Desktop/Curso_Flutter/integration_test_flutter/integration_test/autenticacion/autentication_integration_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /Users/carloslopera/Desktop/Curso_Flutter/integration_test_flutter/integration_test/autenticacion/autentication_integration_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":1,"time":15,"type":"allSuites"}
+Running Gradle task 'assembleDebug'...                             19,9s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk
+Installing build/app/outputs/flutter-apk/app-debug.apk...           3,4s
+
+[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:62470/QZTQhgH4zKs=/","observatoryUri":"http://127.0.0.1:62470/QZTQhgH4zKs=/"}}]
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":29423}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":29427}
+{"group":{"id":3,"suiteID":0,"parentID":2,"name":"Feature: Autenticación de Usuario","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":10,"column":3,"url":"file:///Users/carloslopera/Desktop/Curso_Flutter/integration_test_flutter/Users/carloslopera/Desktop/Curso_Flutter/integration_test_flutter/integration_test/autenticacion/autentication_integration_test.dart"},"type":"group","time":29427}
+{"test":{"id":4,"name":"Feature: Autenticación de Usuario Scenario: Inicio de sesión con credenciales válidas","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":175,"column":5,"url":"package:flutter_test/src/widget_tester.dart"},"type":"testStart","time":29427}
+{"testID":4,"messageType":"print","message":"ESCENARIO: Login Exitoso","type":"print","time":30070}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":35275}
+{"test":{"id":5,"name":"Feature: Autenticación de Usuario Scenario: Falla el inicio de sesión con contraseña incorrecta","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":175,"column":5,"url":"package:flutter_test/src/widget_tester.dart"},"type":"testStart","time":35275}
+{"testID":5,"messageType":"print","message":"ESCENARIO: Contraseña Incorrecta","type":"print","time":35297}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":39490}
+{"test":{"id":6,"name":"Feature: Autenticación de Usuario Scenario: Falla el inicio de sesión con email incorrecto","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":175,"column":5,"url":"package:flutter_test/src/widget_tester.dart"},"type":"testStart","time":39490}
+{"testID":6,"messageType":"print","message":"ESCENARIO: Usuario Inexistente","type":"print","time":39510}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":43640}
+{"test":{"id":7,"name":"(tearDownAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":50,"column":5,"url":"package:integration_test/integration_test.dart"},"type":"testStart","time":43640}
+{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":43655}
+{"success":true,"type":"done","time":44342}
