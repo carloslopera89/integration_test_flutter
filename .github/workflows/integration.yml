@@ -1,0 +1,16 @@
+name: Flutter Integration Tests
+
+# Controlamos cuándo se dispara el pipeline (Triggers)
+on:
+  - push
+
+jobs:
+  integration-tests:
+    runs-on: self-hosted
+
+    steps:
+      - name: Git Clone Repository
+        uses: actions/checkout@v4
+
+      - name: Flutter Pub Get
+        run: flutter pub get
