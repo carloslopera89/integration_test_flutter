@@ -23,3 +23,13 @@ jobs:
         
       - name: Run Integration Tests
         run: flutter test integration_test/autenticacion/autentication_integration_test.dart -d RFXNW19926009314 --machine -r json > lib/src/report/test-results.json
+
+      - name: Generate Report
+        run: dart run lib/src/report/generate_report.dart
+
+      - name: Upload Test Results
+        if: always() # Se ejecuta aunque las pruebas fallen
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-report
+          path: lib/src/report/report.html
