@@ -17,3 +17,11 @@ jobs:
 
       - name: Flutter Test 
         run:  flutter test
+
+      - name: Run Integration Tests
+        run: |
+          # Aseguramos que el directorio de reportes exista
+          mkdir -p integration_test/utils/report
+          
+          # Ejecución del comando (Nota: se asume que el dispositivo está conectado al runner)
+          flutter test integration_test/autenticacion/autentication_integration_test.dart --machine -r json > lib/src/report/test-results.json -d RFXNW19926009314
