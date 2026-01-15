@@ -8,6 +8,12 @@ jobs:
   integration-tests:
     runs-on: self-hosted
 
+    # Estrategia de matriz para ejecutar en paralelo
+    strategy:
+      fail-fast: false # Evita que si falla Android, se cancele iOS (o viceversa)
+      matrix:
+        platform: [android, ios]
+
     env:
       NODE_TLS_REJECT_UNAUTHORIZED: '0'
 
@@ -24,8 +30,24 @@ jobs:
       - name: Create directorio para reporte
         run: mkdir -p integration_test/utils/report
         
-      - name: Run Integration Tests
-        run: flutter test integration_test/autenticacion/autentication_integration_test.dart -d RFXNW19926009314 --machine -r json > lib/src/report/test-results.json
+      #- name: Run Integration Tests
+        #run: flutter test integration_test/autenticacion/autentication_integration_test.dart -d RFXNW19926009314 --machine -r json > lib/src/report/test-results.json
+
+      # 7. Ejecutar Pruebas de Integración (Condicional por Plataforma)
+      # Este paso se ejecutará en paralelo para Android e iOS gracias a la matriz
+      - name: Run Integration Tests (${{ matrix.platform }})
+        shell: bash
+        run: |
+          mkdir -p integration_test/utils/report
+          mkdir -p lib/src/report
+          
+          if [ "${{ matrix.platform }}" == "android" ]; then
+            echo "Iniciando pruebas en dispositivo Android..."
+            flutter test integration_test/autenticacion/autentication_integration_test.dart -d RFXNW19926009314 --machine -r json > lib/src/report/test-results.json
+          else
+            echo "Iniciando pruebas en dispositivo iOS..."
+            flutter test integration_test/autenticacion/autentication_integration_test.dart -d 00008030-000220502130802E --machine -r json > lib/src/report/test-results.json
+          fi
 
       - name: Generate Report
         run: dart run lib/src/report/generate_report.dart
