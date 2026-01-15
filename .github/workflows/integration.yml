@@ -52,22 +52,32 @@ jobs:
       - name: Generate Report
         run: dart run lib/src/report/generate_report.dart
 
+      #- name: Upload Test Results
+        #if: always() # Se ejecuta aunque las pruebas fallen
+        #uses: actions/upload-artifact@v4
+        #with:
+          #name: integration-test-report
+          #path: lib/src/report/report.html
+
       - name: Upload Test Results
-        if: always() # Se ejecuta aunque las pruebas fallen
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: integration-test-report
-          path: lib/src/report/report.html
+          name: report-${{ matrix.platform }}-${{ github.run_id }}
+          path: |
+            lib/src/report/report-${{ matrix.platform }}.html
+            integration_test/utils/report/test-results-${{ matrix.platform }}.json
+          if-no-files-found: warn
+          overwrite: true
 
       - name: Publish Report Summary
         if: always()
         run: |
-          echo "### 📊 Resultado de Pruebas de Integración" >> $GITHUB_STEP_SUMMARY
-          echo "La ejecución de las pruebas ha finalizado." >> $GITHUB_STEP_SUMMARY
-          echo "- **Reporte generado:** [Descargar desde Artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
-          echo "- **Ruta del reporte:** \`lib/src/report/report.html\`" >> $GITHUB_STEP_SUMMARY
-          if [ -f "lib/src/report/report.html" ]; then
-            echo "✅ El archivo de reporte HTML se encuentra disponible como recurso." >> $GITHUB_STEP_SUMMARY
+          echo "### 📊 Resultado de Pruebas: ${{ matrix.platform }}" >> $GITHUB_STEP_SUMMARY
+          echo "La ejecución de las pruebas para **${{ matrix.platform }}** ha finalizado." >> $GITHUB_STEP_SUMMARY
+          echo "- **Reporte:** report-${{ matrix.platform }}.html" >> $GITHUB_STEP_SUMMARY
+          if [ -f "lib/src/report/report-${{ matrix.platform }}.html" ]; then
+            echo "✅ El archivo de reporte HTML para ${{ matrix.platform }} se encuentra disponible." >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ No se encontró el archivo HTML para visualizar." >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ No se encontró el archivo HTML para ${{ matrix.platform }}." >> $GITHUB_STEP_SUMMARY
           fi
