@@ -46,7 +46,7 @@ jobs:
             flutter test integration_test/autenticacion/autentication_integration_test.dart -d RFXNW19926009314 --machine -r json > lib/src/report/test-results.json
           else
             echo "Iniciando pruebas en dispositivo iOS..."
-            flutter test integration_test/autenticacion/autentication_integration_test.dart -d 00008030-000220502130802E --machine -r json > lib/src/report/test-results.json
+            flutter test integration_test/autenticacion/autentication_integration_test.dart -d CC22125C-12B8-4FF7-806B-8FA895171DA1 --machine -r json > lib/src/report/test-results.json
           fi
 
       - name: Generate Report
